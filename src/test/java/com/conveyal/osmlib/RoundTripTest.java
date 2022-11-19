@@ -3,6 +3,7 @@ package com.conveyal.osmlib;
 import junit.framework.TestCase;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Map;
 
 public class RoundTripTest extends TestCase {
@@ -19,7 +20,7 @@ public class RoundTripTest extends TestCase {
         assertTrue(osmOriginal.relations.size() > 1);
 
         // Write OSM data out to a VEX file
-        File vexFile = File.createTempFile("test", ".vex");
+        File vexFile = Files.createTempFile("test", ".vex").toFile();
         osmOriginal.writeToFile(vexFile.getPath());
 
         // Read OSM data back in from VEX file
@@ -41,7 +42,7 @@ public class RoundTripTest extends TestCase {
         assertTrue(osmOriginal.relations.size() > 1);
 
         // Write OSM data out to a PBF file
-        File ourPbfFile = File.createTempFile("test", ".osm.pbf");
+        File ourPbfFile = Files.createTempFile("test", ".osm.pbf").toFile();
         osmOriginal.writeToFile(ourPbfFile.getPath());
 
         // Read OSM data back in from VEX file
